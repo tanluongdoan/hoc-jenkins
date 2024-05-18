@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('CLone') {
+        stage('Clone') {
             steps {
-                git clone 'https://github.com/tanluongdoan/hoc-jenkins.git'
+                git 'https://github.com/tanluongdoan/hoc-jenkins.git'
             }
         }
     }
