@@ -37,16 +37,16 @@ pipeline {
                 }
             }
         }
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    // Login to Docker Hub
-                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        // stage('Push Docker Image') {
+        //     steps {
+        //         script {
+        //             // Login to Docker Hub
+        //             sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                     
-                    // Push the Docker image to Docker Hub
-                    sh 'docker push tanluongdoan/hoc-jenkins'
-                }
-            }
-        }
+        //             // Push the Docker image to Docker Hub
+        //             sh 'docker push tanluongdoan/hoc-jenkins'
+        //         }
+        //     }
+        // }
     }
 }
