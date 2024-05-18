@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('CLone') {
             steps {
-                git 'https://github.com/tanluongdoan/hoc-jenkins.git'
+                git clone 'https://github.com/tanluongdoan/hoc-jenkins.git'
             }
         }
     }
