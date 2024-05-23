@@ -10,14 +10,14 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/tanluongdoan/hoc-jenkins.git'
             }
         }
-        // stage('Build Docker Image') {
-        //     steps {
-        //         script {
-        //             // Build Docker image
-        //             sh 'docker build -t tanluongdoan/hoc-jenkins .'
-        //         }
-        //     }
-        // }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build Docker image
+                    sh 'docker build -t tanluongdoan/hoc-jenkins .'
+                }
+            }
+        }
         // stage('Push Docker Image') {
         //     steps {
         //         script {
