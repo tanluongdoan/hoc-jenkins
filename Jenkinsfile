@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    // environment {
-    //     DOCKERHUB_CREDENTIALS = credentials('docker-hub') // Sử dụng ID của credentials mà bạn đã cấu hình
-    // }
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub') // Sử dụng ID của credentials mà bạn đã cấu hình
+    }
     stages {
         stage('Clone') {
             steps {
@@ -18,16 +18,16 @@ pipeline {
                 }
             }
         }
-        // stage('Push Docker Image') {
-        //     steps {
-        //         script {
-        //             // Đăng nhập vào Docker Hub
-        //             sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    // Đăng nhập vào Docker Hub
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                     
-        //             // Đẩy Docker image lên Docker Hub
-        //             sh 'docker push tanluongdoan/hoc-jenkins'
-        //         }
-        //     }
-        // }
+                    // Đẩy Docker image lên Docker Hub
+                    sh 'docker push tanluongdoan/hoc-jenkins'
+                }
+            }
+        }
     }
 }
