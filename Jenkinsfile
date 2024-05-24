@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_USERNAME = 'tanluong.doan@gmail.com'
+        DOCKER_PASSWORD = credentials('DTL1a25uo29!') // Thay 'docker-hub-password' bằng ID của credentials bạn đã cấu hình
+    }
     stages {
         stage('Clone') {
             steps {
@@ -16,10 +20,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    def username = credentialsId('tanluong.doan@gmail.com', environment: true).username
-                    def password = credentialsId('DTL1a25uo29!', environment: true).password
-                    docker login - u "$username" - p "$password"
-                     bat 'docker push tanluongdoan/hoc-jenkins' // Replace with your image name
+                    echo "${env.DOCKER_PASSWORD}" | docker login -u "${env.DOCKER_USERNAME}" --password-stdin
+                    bat 'docker push tanluongdoan/hoc-jenkins'
                 }
             }
         }
