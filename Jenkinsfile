@@ -18,7 +18,7 @@ pipeline {
                 script {
                     
                     bat 'docker tag hoc-jenkins tanluongdoan/hoc-jenkins:0.0.0'
-                    bat 'docker tanluongdoan/hoc-jenkins:0.0.0'
+                    bat 'docker push tanluongdoan/hoc-jenkins:0.0.0'
                 }
             }
         }
