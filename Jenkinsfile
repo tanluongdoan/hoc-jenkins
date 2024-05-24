@@ -20,12 +20,16 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                script {
+               script {
                     // Đăng nhập vào Docker Hub
-                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                    
-                    // Đẩy Docker image lên Docker Hub
-                    sh 'docker push tanluongdoan/hoc-jenkins'
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
+                        bat 'echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin' // Sử dụng 'sh' cho môi trường Unix/Linux
+                        // bat 'echo %DOCKERHUB_PASSWORD% | docker login -u %DOCKERHUB_USERNAME% --password-stdin' // Sử dụng 'bat' cho môi trường Windows
+                        
+                        // Đẩy Docker image lên Docker Hub
+                        bat 'docker push tanluongdoan/hoc-jenkins' // Sử dụng 'sh' cho môi trường Unix/Linux
+                        // bat 'docker push tanluongdoan/hoc-jenkins' // Sử dụng 'bat' cho môi trường Windows
+                    }
                 }
             }
         }
