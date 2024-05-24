@@ -16,10 +16,10 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'DockerHubPwd', usernameVariable: 'tanluong.doan@gmail.com', passwordVariable: 'DTL1a25uo29!')]) {
-                        echo "${DOCKER_PASSWORD}" | docker login - u "${DOCKER_USERNAME}" - password - stdin
-                        bat 'docker push tanluongdoan/hoc-jenkins'
-                    }
+                    def username = credentialsId('tanluong.doan@gmail.com', environment: true).username
+                    def password = credentialsId('DTL1a25uo29!', environment: true).password
+                    docker login - u "$username" - p "$password"
+                     bat 'docker push tanluongdoan/hoc-jenkins' // Replace with your image name
                 }
             }
         }
