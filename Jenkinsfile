@@ -12,9 +12,9 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                script {
+                 script {
                     // Build Docker image
-                    sh 'docker build -t tanluongdoan/hoc-jenkins .'
+                    bat 'docker build -t tanluongdoan/hoc-jenkins .'
                 }
             }
         }
