@@ -17,7 +17,7 @@ pipeline {
                     sh 'docker build -t tanluongdoan/hoc-jenkins .'
                 }
             }
-        // }
+        }
         // stage('Push Docker Image') {
         //     steps {
         //         script {
