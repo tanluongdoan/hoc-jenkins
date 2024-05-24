@@ -23,12 +23,12 @@ pipeline {
                script {
                     // Đăng nhập vào Docker Hub
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
-                        bat 'echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin' // Sử dụng 'sh' cho môi trường Unix/Linux
-                        // bat 'echo %DOCKERHUB_PASSWORD% | docker login -u %DOCKERHUB_USERNAME% --password-stdin' // Sử dụng 'bat' cho môi trường Windows
+                        // bat 'echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin' // Sử dụng 'sh' cho môi trường Unix/Linux
+                        bat 'echo %DOCKERHUB_PASSWORD% | docker login -u %DOCKERHUB_USERNAME% --password-stdin' // Sử dụng 'bat' cho môi trường Windows
                         
                         // Đẩy Docker image lên Docker Hub
-                        bat 'docker push tanluongdoan/hoc-jenkins' // Sử dụng 'sh' cho môi trường Unix/Linux
-                        // bat 'docker push tanluongdoan/hoc-jenkins' // Sử dụng 'bat' cho môi trường Windows
+                        // bat 'docker push tanluongdoan/hoc-jenkins' // Sử dụng 'sh' cho môi trường Unix/Linux
+                        bat 'docker push tanluongdoan/hoc-jenkins' // Sử dụng 'bat' cho môi trường Windows
                     }
                 }
             }
