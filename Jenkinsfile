@@ -16,9 +16,12 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                    bat 'docker tag hoc-jenkins tanluongdoan/hocjenkins:0.0.0'
-                    bat 'docker push tanluongdoan/hocjenkins:0.0.0'
+                    // This step should not normally be used in your script. Consult the inline help for details.
+                    withDockerRegistry(credentialsId: 'docker-hub', url: ' https://index.docker.io/v1/') {
+                        bat 'docker tag hoc-jenkins tanluongdoan/hocjenkins:0.0.0'
+                        bat 'docker push tanluongdoan/hocjenkins:0.0.0'
+                    }
+
                 }
             }
         }
