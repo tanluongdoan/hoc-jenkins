@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    	environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
     stages {
         stage('Clone') {
             steps {
@@ -16,8 +19,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    
-                    bat 'docker login -u tanluongdoan.doan@gmail.com -p DTL1a25uo29! https://index.docker.io/v1/'
+                   bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                     bat 'docker tag hoc-jenkins tanluongdoan/hocjenkins:0.0.0'
                     bat 'docker push tanluongdoan/hocjenkins:0.0.0'
                 }
