@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('docker-hub') // Sử dụng ID của credentials mà bạn đã cấu hình
-    }
+    // environment {
+    //     DOCKERHUB_CREDENTIALS = credentials('docker-hub') // Sử dụng ID của credentials mà bạn đã cấu hình
+    // }
     stages {
         stage('Clone') {
             steps {
