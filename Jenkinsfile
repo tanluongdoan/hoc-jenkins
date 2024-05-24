@@ -17,6 +17,7 @@ pipeline {
             steps {
                 script {
                     
+                    bat 'docker login -u tanluongdoan.doan@gmail.com -p DTL1a25uo29! SERVER'
                     bat 'docker tag hoc-jenkins tanluongdoan/hocjenkins:0.0.0'
                     bat 'docker push tanluongdoan/hocjenkins:0.0.0'
                 }
